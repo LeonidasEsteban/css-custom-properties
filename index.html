@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS custom properties aka variables</title>
+  <style>
+    :root {
+      --stop: #dd082f;
+      --warning: #ffcd00;
+      --go: #2df904;
+      --dark: #010101;
+      --widgetSize: 500px;
+      --lightSize: calc(var(--widgetSize) / 5);
+      --gap: calc(var(--lightSize) / 5);
+    }
+    .light {
+      width: var(--lightSize, 100px);
+
+      height: var(--lightSize, 100px);
+
+      border-radius: 50%;
+    }
+
+    .stop {
+      background-color: var(--stop);
+    }
+    .warning {
+      background-color: var(--warning);
+    }
+    .go {
+      background-color: var(--go);
+    }
+
+    .traffic-light > .light {
+      margin-top: var(--gap);
+    }
+    .traffic-light > .light:first-child {
+      margin-top: 0;
+    }
+
+    .traffic-light {
+      background-color: var(--dark);
+
+      padding: calc(var(--gap) * 2) var(--gap);
+
+      position: relative;
+      z-index: 2;
+      align-self: center;
+    }
+
+    .traffic-signal {
+      background: var(--warning);
+
+      border: 1px solid var(--dark);
+
+      border-radius: var(--gap);
+
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      transform: rotate(45deg);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+
+    .widget {
+      width: var(--widgetSize);
+
+      height: var(--widgetSize);
+
+      margin:  calc(var(--widgetSize) / 2) auto;
+
+      display: flex;
+      position: relative;
+      justify-content: center;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="widget">
+    <div class="traffic-signal">
+    </div>
+    <div class="traffic-light">
+      <div class="light stop"></div>
+      <div class="light warning"></div>
+      <div class="light go"></div>
+    </div>
+  </div>
+
+</body>
+</html>
